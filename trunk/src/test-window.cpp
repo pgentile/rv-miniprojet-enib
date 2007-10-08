@@ -1,17 +1,28 @@
 #include "test-window.h"
 #include <GL/glut.h>
 
+TestWindow::TestWindow(void)
+{
+	_angle = 0.0;
+}
+
 void TestWindow::onKeyPress(unsigned char key, int, int)
 {
 	switch (key) {
-		case 'q':
-			exit(0);
-			break;
+
+	case 'q':
+		exit(0);
+		break;
+
 	}
 }
 
-void TestWindow::onSpecialKeyPress(int, int, int)
+void TestWindow::onTick(void)
 {
+	_angle += 0.5;
+	if (_angle > 360.0) {
+		_angle -= 360.0;
+	}
 }
 
 void TestWindow::initGl(void)
@@ -36,6 +47,7 @@ void TestWindow::display(void)
 	gluLookAt(2.0, 2.0, 2.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
 	glColor3f(1.0, 1.0, 1.0);
+	glRotatef(_angle, 0.0, 1.0, 0.0);
 	glutWireCube(1.0);
 
 	glutSwapBuffers();

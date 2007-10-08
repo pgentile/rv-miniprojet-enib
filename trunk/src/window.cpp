@@ -3,6 +3,7 @@
 
 void _w_onKeyPress(unsigned char key, int x, int y);
 void _w_onSpecialKeyPress(int key, int x, int y);
+void _w_onTick(int value);
 void _w_display(void);
 void _w_reshape(int width, int height);
 
@@ -13,6 +14,7 @@ Window::Window(void)
 	setPosition(0, 0);
 	setSize(500, 300);
 	setTitle("<Titre non defini>");
+	setRefreshRate(50);
 }
 
 Window::~Window(void)
@@ -51,6 +53,33 @@ string Window::getTitle(void)
 	return _title;
 }
 
+void Window::setRefreshRate(unsigned int rate)
+{
+	_refreshRate = rate;
+}
+
+unsigned int Window::getRefreshRate(void)
+{
+	return _refreshRate;
+}
+
+unsigned int Window::getTimerInterval(void)
+{
+	return (unsigned int) (1000.0 / _refreshRate);
+}
+
+void Window::onKeyPress(unsigned char, int, int)
+{
+}
+
+void Window::onSpecialKeyPress(int, int, int)
+{
+}
+
+void Window::onTick(void)
+{
+}
+
 void Window::create(int argc, char** argv, Window& window)
 {
 	_w_window = &window;
@@ -68,6 +97,7 @@ void Window::create(int argc, char** argv, Window& window)
 	glutReshapeFunc(_w_reshape);
 	glutKeyboardFunc(_w_onKeyPress);
 	glutSpecialFunc(_w_onSpecialKeyPress);
+	glutTimerFunc(_w_window->getTimerInterval(), _w_onTick, 0);
 	// Boucle d'evenements
 	glutMainLoop();
 }
@@ -80,6 +110,13 @@ void _w_onKeyPress(unsigned char key, int x, int y)
 void _w_onSpecialKeyPress(int key, int x, int y)
 {
 	_w_window->onSpecialKeyPress(key, x, y);
+}
+
+void _w_onTick(int value)
+{
+	_w_window->onTick();
+	glutTimerFunc(_w_window->getTimerInterval(), _w_onTick, value);
+	glutPostRedisplay();
 }
 
 void _w_display(void)

@@ -22,9 +22,14 @@ public:
 
 	void setTitle(string title);
 	string getTitle(void);
+	
+	void setRefreshRate(unsigned int rate);
+	unsigned int getRefreshRate(void);
+	unsigned int getTimerInterval(void);
 
-	virtual void onKeyPress(unsigned char key, int x, int y) = 0;
-	virtual void onSpecialKeyPress(int key, int x, int y) = 0;
+	virtual void onKeyPress(unsigned char key, int x, int y);
+	virtual void onSpecialKeyPress(int key, int x, int y);
+	virtual void onTick(void);
 
 	virtual void initGl(void) = 0;
 
@@ -41,6 +46,8 @@ private:
 	Size2D _size;
 
 	string _title;
+	
+	unsigned int _refreshRate;
 
 };
 
