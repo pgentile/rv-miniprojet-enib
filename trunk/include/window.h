@@ -12,7 +12,6 @@ class Window
 public:
 
 	Window(void);
-	~Window(void);
 
 	void setPosition(int x, int y);
 	Position2D getPosition(void);

@@ -17,10 +17,6 @@ Window::Window(void)
 	setRefreshRate(50);
 }
 
-Window::~Window(void)
-{
-}
-
 void Window::setPosition(int x, int y)
 {
 	_position.x = x;
