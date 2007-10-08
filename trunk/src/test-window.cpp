@@ -35,7 +35,6 @@ void TestWindow::initGl(void)
 
 void TestWindow::changeProjection(int width, int height)
 {
-	glLoadIdentity();
 	gluPerspective(60.0, (float) width / height, 0.1, 60.0);
 }
 

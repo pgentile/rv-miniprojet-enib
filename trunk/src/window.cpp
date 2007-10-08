@@ -133,6 +133,7 @@ void _w_reshape(int width, int height)
 {
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 	_w_window->changeProjection(width, height);
 	glMatrixMode(GL_MODELVIEW);
 }
