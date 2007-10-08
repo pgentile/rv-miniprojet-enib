@@ -33,4 +33,4 @@ Cette classe représente un object composite : il possède des enfants de type `
 
 Cette classe applique une transformation aux objets sous sa responsabilité.
 
-  * `void transform(void)`
+  * `void _transform(void)`
