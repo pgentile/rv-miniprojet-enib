@@ -1,0 +1,32 @@
+#summary Graphe de scène
+#labels Featured,Phase-Design
+
+= Introduction =
+
+Le graphe de scène a pour but de simplifier la création et la transformation d'objets OpenGL.
+
+= Objets impliqués =
+
+== `SceneElement` ==
+
+Cette classe est la mère de toutes les autres classes (sauf de `AnimatedSceneObject`).
+
+== `Scene` ==
+
+Cette classe est la racine d'une scène OpenGL.
+
+== `SceneObject` ==
+
+Cette classe représente un objet OpenGl (un cube, une sphère, une soucoupe, etc).
+
+== `SceneCompositeObject` ==
+
+Cette classe représente un object composite : il possède des enfants de type `SceneObject`.
+
+== `Transformation` ==
+
+Cette classe applique une transformation aux objets sous sa responsabilité.
+
+== `AnimatedSceneObject` ==
+
+Cette classe ajoute la possibilité d'animer les objets à chaque _tick_ de la scène.
