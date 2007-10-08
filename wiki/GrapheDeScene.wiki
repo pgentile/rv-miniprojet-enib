@@ -9,7 +9,7 @@ Le graphe de scène a pour but de simplifier la création et la transformation d
 
 == `SceneElement` ==
 
-Cette classe est la mère de toutes les autres classes.
+Cette classe est la mère de toutes les autres classes. Elle peut également représenter des objects simples (sphères, cube, soucoupes volantes, etc).
 
   * `void _init(void)`
   * `void render(void)`
@@ -20,12 +20,6 @@ Cette classe est la mère de toutes les autres classes.
 Cette classe est la racine d'une scène OpenGL. Elle dérive de `SceneCompositeObject`.
 
  * `void _setCamera(void)`
-
-== `SceneObject` ==
-
-Cette classe représente un objet OpenGl (un cube, une sphère, une soucoupe, etc).
-
-  * `unsigned int getId(void)`
 
 == `SceneCompositeObject` ==
 
