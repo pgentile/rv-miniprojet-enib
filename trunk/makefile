@@ -14,7 +14,7 @@ APPS=enib
 all: $(APPS)
 
 # Notre application enib
-enib: src/enib.cpp abstract-window.o 
+enib: src/enib.cpp 
 	$(CC) -o $@ $^ $(LD_FLAGS)
 
 # Regle generique
