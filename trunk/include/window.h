@@ -29,7 +29,7 @@ public:
 
 	virtual void onKeyPress(unsigned char key, int x, int y);
 	virtual void onSpecialKeyPress(int key, int x, int y);
-	virtual void onTick(void);
+	virtual void onTick(int timerInterval);
 
 	virtual void initGl(void) = 0;
 

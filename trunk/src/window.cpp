@@ -70,14 +70,17 @@ unsigned int Window::getTimerInterval(void)
 
 void Window::onKeyPress(unsigned char, int, int)
 {
+	// Ne rien faire
 }
 
 void Window::onSpecialKeyPress(int, int, int)
 {
+	// Ne rien faire
 }
 
-void Window::onTick(void)
+void Window::onTick(int)
 {
+	// Ne rien faire
 }
 
 void Window::create(int argc, char** argv, Window& window)
@@ -114,8 +117,9 @@ void _w_onSpecialKeyPress(int key, int x, int y)
 
 void _w_onTick(int value)
 {
-	_w_window->onTick();
-	glutTimerFunc(_w_window->getTimerInterval(), _w_onTick, value);
+	int timerInterval = _w_window->getTimerInterval();
+	_w_window->onTick(timerInterval);
+	glutTimerFunc(timerInterval, _w_onTick, value);
 	glutPostRedisplay();
 }
 

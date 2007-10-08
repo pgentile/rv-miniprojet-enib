@@ -17,7 +17,7 @@ void TestWindow::onKeyPress(unsigned char key, int, int)
 	}
 }
 
-void TestWindow::onTick(void)
+void TestWindow::onTick(int)
 {
 	_angle += 0.5;
 	if (_angle > 360.0) {
