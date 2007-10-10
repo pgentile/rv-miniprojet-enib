@@ -14,16 +14,20 @@ APPS=enib test
 all: $(APPS)
 
 # Notre application enib
-enib: src/enib.cpp 
+enib: enib.o
 	$(CC) -o $@ $^ $(LD_FLAGS)
 
 # Notre application de test
-test: src/test.cpp 
+test: test.o test-window.o window.o
 	$(CC) -o $@ $^ $(LD_FLAGS)
 
 # Regle generique
 %.o: src/%.cpp include/%.h
 	$(CC) -c -o $@ $< $(CC_FLAGS)
+
+# Regle generique pour les .h inexistants
+include/%.h:
+	@echo "$@ n'existe pas, mais tout baigne !"
 
 # Nettoyage
 clean:
