@@ -10,7 +10,7 @@ public:
 	
 	virtual void animate(int timerInterval);
 	
-	virtual void render(void) = 0;
+	virtual void render(void);
 	
 protected:
 

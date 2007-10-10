@@ -4,14 +4,14 @@ using namespace std;
 
 void SceneComposite::animate(int timerInterval)
 {
-	for (vector<SceneElement&>::iterator i = _children.begin(); i++; i != _children.end()) {
+	for (vector<SceneElement>::iterator i = _children.begin(); i != _children.end(); ++i) {
 		(*i).animate(timerInterval);
 	}
 }
 
 void SceneComposite::render(void)
 {
-	for (vector<SceneElement&>::iterator i = _children.begin(); i++; i != _children.end()) {
+	for (vector<SceneElement>::iterator i = _children.begin(); i != _children.end(); ++i) {
 		(*i).render();
 	}
 }
