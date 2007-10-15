@@ -9,30 +9,36 @@ void Barney::animate(int timerInterval)
 		_angle -= 360.0;
 	}
 }
-	
+
 void Barney::render(void)
 {
 	unsigned int texture = PngLoader::load("barney.png");
-	
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glClearColor(0.0, 0.0, 0.0, 0.0);
-	
+
 	glRotatef(_angle, 0.0, 1.0, 0.0);
+	
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.1);
+
+	// Barney
+
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
+
 	glBegin(GL_POLYGON);
+	glColor4f(1.0, 1.0, 1.0, 1.0);
 	glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, 1.0, 0.0);
 	glTexCoord2f(1.0, 1.0); glVertex3f(1.0, 1.0, 0.0);
 	glTexCoord2f(1.0, 0.0); glVertex3f(1.0, -1.0, 0.0);
 	glTexCoord2f(0.0, 0.0); glVertex3f(-1.0, -1.0, 0.0);
 	glEnd();
-	
+
 	glDisable(GL_TEXTURE_2D);
 	
-	glDisable(GL_BLEND);
+	glDisable(GL_ALPHA_TEST);
+	glDisable(GL_DEPTH_TEST);
 }
-	
+
 void Barney::_init(void)
 {
 	_angle = 0.0;
