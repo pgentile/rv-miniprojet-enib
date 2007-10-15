@@ -34,11 +34,7 @@ public:
 	virtual void onSpecialKeyPress(int key, int x, int y);
 	virtual void onTick(int timerInterval);
 
-	virtual void initGl(void) = 0;
-
 	virtual void changeProjection(int width, int height) = 0;
-	
-	virtual void clearGl() = 0;
 
 	virtual void display(void);
 

@@ -13,6 +13,11 @@ void Barney::animate(int timerInterval)
 void Barney::render(void)
 {
 	unsigned int texture = PngLoader::load("barney.png");
+	
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glClearColor(0.0, 0.0, 0.0, 0.0);
+	
 	glRotatef(_angle, 0.0, 1.0, 0.0);
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -22,8 +27,10 @@ void Barney::render(void)
 	glTexCoord2f(1.0, 0.0); glVertex3f(1.0, -1.0, 0.0);
 	glTexCoord2f(0.0, 0.0); glVertex3f(-1.0, -1.0, 0.0);
 	glEnd();
-
+	
 	glDisable(GL_TEXTURE_2D);
+	
+	glDisable(GL_BLEND);
 }
 	
 void Barney::_init(void)

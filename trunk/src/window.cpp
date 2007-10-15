@@ -93,7 +93,7 @@ void Window::onTick(int timerInterval)
 
 void Window::display(void)
 {
-	clearGl();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	if (_scene != (Scene*) 0) {
 		_scene->render();
 	}
@@ -104,13 +104,13 @@ void Window::create(int argc, char** argv, Window& window)
 	_w_window = &window;
 	// Initialiser GLUT & OpenGL
 	glutInit(&argc, argv);
-	window.initGl();
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	// Creer la fenetre
 	Position2D position = window.getPosition();
 	glutInitWindowPosition(position.x, position.y);
 	Size2D size = window.getSize();
 	glutInitWindowSize(size.width, size.height);
-	glutCreateWindow(window.getTitle().data());
+	glutCreateWindow(window.getTitle().c_str());
 	// Initialiser les evenements GLUT
 	glutDisplayFunc(_w_display);
 	glutReshapeFunc(_w_reshape);
