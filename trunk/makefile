@@ -2,7 +2,7 @@
 CC=g++
 INCLUDES=-I./include
 CC_FLAGS=-W -pedantic -ansi $(INCLUDES)
-LD_FLAGS=-L/usr/X11R6/lib -lGL -lGLU -lglut -ljpeg -lX11 -lXmu -lXi -lm -lpng
+LD_FLAGS=-L/usr/X11R6/lib -L./lib -lGL -lGLU -lglut -ljpeg -lX11 -lXmu -lXi -lm -lpng
 APPS=enib test
 O_FILES=png-loader.o scene.o scene-composite.o scene-element.o transformation.o window.o
 
