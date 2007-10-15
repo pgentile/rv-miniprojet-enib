@@ -14,7 +14,7 @@ public:
 	
 protected:
 
-	virtual void _init(void) = 0;
+	virtual void _init(void);
 
 };
 

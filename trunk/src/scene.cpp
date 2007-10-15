@@ -6,4 +6,5 @@ void Scene::render(void)
 	glLoadIdentity();
 	_setCamera();
 	SceneComposite::render();
+	glutSwapBuffers();
 }

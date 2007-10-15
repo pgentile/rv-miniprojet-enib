@@ -37,8 +37,10 @@ public:
 	virtual void initGl(void) = 0;
 
 	virtual void changeProjection(int width, int height) = 0;
+	
+	virtual void clearGl() = 0;
 
-	virtual void display(void) = 0;
+	virtual void display(void);
 
 	static void create(int argc, char** argv, Window& window);
 

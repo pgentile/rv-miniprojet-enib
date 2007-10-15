@@ -2,8 +2,9 @@
 CC=g++
 INCLUDES=-I./include
 CC_FLAGS=-W -pedantic -ansi $(INCLUDES)
-LD_FLAGS=-L/usr/X11R6/lib -lGL -lGLU -lglut -ljpeg -lX11 -lXmu -lXi -lm
+LD_FLAGS=-L/usr/X11R6/lib -lGL -lGLU -lglut -ljpeg -lX11 -lXmu -lXi -lm -lpng
 APPS=enib test
+O_FILES=png-loader.o scene.o scene-composite.o scene-element.o transformation.o window.o
 
 # Quelques notes :
 #   - $@ : nom de la cible
@@ -18,7 +19,7 @@ enib: enib.o
 	$(CC) -o $@ $^ $(LD_FLAGS)
 
 # Notre application de test
-test: test.o test-window.o window.o
+test: test.o test-window.o test-scene.o barney.o $(O_FILES)
 	$(CC) -o $@ $^ $(LD_FLAGS)
 
 # Regle generique

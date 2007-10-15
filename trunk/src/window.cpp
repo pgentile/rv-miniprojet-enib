@@ -84,10 +84,19 @@ void Window::onSpecialKeyPress(int, int, int)
 	// Ne rien faire
 }
 
-void Window::onTick(int)
+void Window::onTick(int timerInterval)
 {
 	if (_scene != (Scene*) 0) {
-		_scene->animate(getTimerInterval());
+		_scene->animate(timerInterval);
+		glutPostRedisplay();
+	}
+}
+
+void Window::display(void)
+{
+	clearGl();
+	if (_scene != (Scene*) 0) {
+		_scene->render();
 	}
 }
 
