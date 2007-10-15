@@ -10,6 +10,7 @@ int main(int argc, char** argv)
 	Barney barney;
 	Soucoupe soucoupe;
 	scene.addChild(&soucoupe);
+	scene.addChild(&barney);
 	window.setScene(&scene);
 	Window::create(argc, argv, window);
 	return 0;
