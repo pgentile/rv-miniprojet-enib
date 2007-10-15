@@ -15,12 +15,12 @@ public:
 
 	virtual void render(void);
 	
-	void addChild(SceneElement& element);
-	vector<SceneElement> getChildren(void);
+	void addChild(SceneElement* element);
+	vector<SceneElement*> getChildren(void);
 	
 private:
 
-	vector<SceneElement> _children;
+	vector<SceneElement*> _children;
 
 };
 

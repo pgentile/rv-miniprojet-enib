@@ -49,6 +49,16 @@ string Window::getTitle(void)
 	return _title;
 }
 
+void Window::setScene(Scene* scene)
+{
+	_scene = scene;
+}
+
+Scene* Window::getScene(void)
+{
+	return _scene;
+}
+
 void Window::setRefreshRate(unsigned int rate)
 {
 	_refreshRate = rate;
@@ -76,21 +86,24 @@ void Window::onSpecialKeyPress(int, int, int)
 
 void Window::onTick(int)
 {
-	// Ne rien faire
+	if (_scene != (Scene*) 0) {
+		_scene->animate(getTimerInterval());
+	}
 }
 
 void Window::create(int argc, char** argv, Window& window)
 {
 	_w_window = &window;
-	// Initialiser OpenGL & GLUT
+	// Initialiser GLUT
 	glutInit(&argc, argv);
-	window.initGl();
 	// Creer la fenetre
 	Position2D position = window.getPosition();
 	glutInitWindowPosition(position.x, position.y);
 	Size2D size = window.getSize();
 	glutInitWindowSize(size.width, size.height);
 	glutCreateWindow(window.getTitle().data());
+	// Initialiser OpenGL
+	window.initGl();
 	// Initialiser les evenements GLUT
 	glutDisplayFunc(_w_display);
 	glutReshapeFunc(_w_reshape);

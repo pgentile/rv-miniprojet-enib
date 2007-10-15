@@ -3,6 +3,7 @@
 
 #include <string>
 #include "common.h"
+#include "scene.h"
 
 using namespace std;
 
@@ -21,6 +22,9 @@ public:
 
 	void setTitle(string title);
 	string getTitle(void);
+	
+	void setScene(Scene* scene);
+	Scene* getScene(void);
 	
 	void setRefreshRate(unsigned int rate);
 	unsigned int getRefreshRate(void);
@@ -47,6 +51,8 @@ private:
 	string _title;
 	
 	unsigned int _refreshRate;
+	
+	Scene* _scene;
 
 };
 

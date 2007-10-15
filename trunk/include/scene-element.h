@@ -8,13 +8,13 @@ public:
 
 	SceneElement(void);
 	
-	virtual void animate(int timerInterval);
+	virtual void animate(int timerInterval) = 0;
 	
-	virtual void render(void);
+	virtual void render(void) = 0;
 	
 protected:
 
-	virtual void _init(void);
+	virtual void _init(void) = 0;
 
 };
 
