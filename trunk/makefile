@@ -19,7 +19,7 @@ enib: enib.o
 	$(CC) -o $@ $^ $(LD_FLAGS)
 
 # Notre application de test
-test: test.o test-window.o test-scene.o barney.o soucoupe.o soucoupeModel.o $(O_FILES)
+test: test.o test-window.o test-scene.o tree.o barney.o soucoupe.o soucoupeModel.o $(O_FILES)
 	$(CC) -o $@ $^ $(LD_FLAGS)
 
 # Regle generique
