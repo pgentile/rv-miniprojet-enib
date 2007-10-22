@@ -14,14 +14,17 @@ void Soucoupe::animate(int timerInterval)
 	
 void Soucoupe::render(void)
 {
-	unsigned int texture = PngLoader::load("bois.png");
+	unsigned int texture = PngLoader::load("damiermoche.png");
 	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
+	
+	glTranslatef(0.0,0.0,2.0);
 	glRotatef(_angle, 0.0, 1.0, 0.0);
-	glRotatef(_angle, 1.0, 0.0, 0.0);
-	glRotatef(_angle, 0.0, 0.0, 1.0);
+	glScalef(0.2,0.2,0.2);
+	//glRotatef(_angle, 1.0, 0.0, 0.0);
+	//glRotatef(_angle, 0.0, 0.0, 1.0);
 	
 	glBindTexture(GL_TEXTURE_2D, texture);
 	
@@ -37,8 +40,8 @@ void Soucoupe::render(void)
 	glEnable( GL_TEXTURE_GEN_T ); 
 
 	// generate the texture coordinates
-	static GLfloat sgenparams[] = { 0.1, 0, 0, 0 }; 
-	static GLfloat tgenparams[] = { 0, 0.1, 0, 0 };
+	static GLfloat sgenparams[] = { 1, 0, 0, 0 }; 
+	static GLfloat tgenparams[] = { 0, 1, 0, 0 };
 	glTexGenfv( GL_S, GL_OBJECT_PLANE, sgenparams );
 	glTexGenfv( GL_T, GL_OBJECT_PLANE, tgenparams );
 
