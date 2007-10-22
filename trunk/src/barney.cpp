@@ -2,8 +2,6 @@
 #include "png-loader.h"
 #include <GL/glut.h>
 
-#include <iostream>
-
 void Barney::animate(int timerInterval)
 {
 	_angle += 2.0;
