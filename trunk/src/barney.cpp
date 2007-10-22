@@ -42,5 +42,4 @@ void Barney::render(void)
 void Barney::init(void)
 {
 	_angle = 0.0;
-	std::cout << "barney" << std::endl;
 }

@@ -5,8 +5,6 @@ class SceneElement
 {
 
 public:
-
-	SceneElement(void);
 	
 	virtual void animate(int timerInterval) = 0;
 	
