@@ -8,8 +8,6 @@ int main(int argc, char** argv)
 	TestWindow window;
 	TestScene scene;
 	Barney barney;
-	Soucoupe soucoupe;
-	scene.addChild(&soucoupe);
 	scene.addChild(&barney);
 	window.setScene(&scene);
 	Window::create(argc, argv, window);

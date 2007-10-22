@@ -18,7 +18,7 @@ void Barney::render(void)
 	
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_ALPHA_TEST);
-	glAlphaFunc(GL_GREATER, 0.1);
+	glAlphaFunc(GL_GREATER, 0.0);
 
 	// Barney
 
