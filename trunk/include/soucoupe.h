@@ -11,10 +11,8 @@ public:
 	virtual void animate(int timerInterval);
 	
 	virtual void render(void);
-	
-protected:
 
-	virtual void _init(void);
+	virtual void init(void);
 	
 private:
 

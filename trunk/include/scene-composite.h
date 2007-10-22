@@ -14,6 +14,8 @@ public:
 	virtual void animate(int timerInterval);
 
 	virtual void render(void);
+
+	virtual void init(void);
 	
 	void addChild(SceneElement* element);
 	vector<SceneElement*> getChildren(void);

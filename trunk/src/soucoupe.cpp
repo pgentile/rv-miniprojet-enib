@@ -53,10 +53,7 @@ void Soucoupe::render(void)
 	
 }
 	
-void Soucoupe::_init(void)
+void Soucoupe::init(void)
 {
 	_angle = 0.0;
-	
-	
-
 }

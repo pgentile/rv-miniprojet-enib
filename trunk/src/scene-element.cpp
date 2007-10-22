@@ -1,11 +1,12 @@
 #include "scene-element.h"
 
+#include <iostream>
+
 SceneElement::SceneElement(void)
 {
-	_init();
 }
 
-void SceneElement::_init(void)
+void SceneElement::init(void)
 {
-	// Ne rien faire
+	std::cout << "SceneElement" << std::endl;
 }

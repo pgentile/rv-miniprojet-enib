@@ -19,6 +19,13 @@ void SceneComposite::render(void)
 	}
 }
 
+void SceneComposite::init(void)
+{
+	for (vector<SceneElement*>::iterator i = _children.begin(); i != _children.end(); ++i) {
+		(*i)->init();
+	}
+}
+
 void SceneComposite::addChild(SceneElement* element)
 {
 	_children.push_back(element);

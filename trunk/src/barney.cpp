@@ -2,6 +2,8 @@
 #include "png-loader.h"
 #include <GL/glut.h>
 
+#include <iostream>
+
 void Barney::animate(int timerInterval)
 {
 	_angle += 2.0;
@@ -37,7 +39,8 @@ void Barney::render(void)
 	glDisable(GL_DEPTH_TEST);
 }
 
-void Barney::_init(void)
+void Barney::init(void)
 {
 	_angle = 0.0;
+	std::cout << "barney" << std::endl;
 }
