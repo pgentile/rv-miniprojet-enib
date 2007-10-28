@@ -1,40 +1,33 @@
-#include "poof.h"
+#include "smoke.h"
 #include "png-loader.h"
 #include <GL/glut.h>
 
-Poof::Poof(void)
+Smoke::Smoke(float x, float y, float z)
 {
-	_angle = 0.0;
+	_x = x;
+	_y = y;
+	_z = z;
 	_height = 0.0;
 	_scale = 0.1;
 	_alpha = 1.0;
 }
 
-Poof::Poof(float angle)
+void Smoke::animate(int)
 {
-	_angle = angle;
-	_height = 0.0;
-	_scale = 0.1;
-	_alpha = 1.0;
-}
-
-void Poof::animate(int)
-{
-	_height += 0.005;
+	_height += 0.018;
 	_scale += 0.005;
 	if (_alpha > 0.0) {
 		_alpha -= 0.001;
 	}
 }
 
-void Poof::render(void)
+void Smoke::render(void)
 {
 	unsigned int texture = PngLoader::load("poof.png");
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
 
-	glRotatef(_angle, 0.0, 0.0, 1.0);
-	glTranslatef(0.0, _height, 0.0);
+	glTranslatef(_x, _y + _height, _z);
 	glScalef(_scale, _scale, 1.0);
 
 	glBegin(GL_POLYGON);
@@ -48,6 +41,3 @@ void Poof::render(void)
 	glDisable(GL_TEXTURE_2D);
 }
 
-void Poof::init(void)
-{
-}

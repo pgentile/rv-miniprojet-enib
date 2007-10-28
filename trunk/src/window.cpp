@@ -104,7 +104,7 @@ void Window::create(int argc, char** argv, Window& window)
 	_w_window = &window;
 	// Initialiser GLUT & OpenGL
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH | GLUT_ALPHA);
 	// Creer la fenetre
 	Position2D position = window.getPosition();
 	glutInitWindowPosition(position.x, position.y);
@@ -153,3 +153,4 @@ void _w_reshape(int width, int height)
 	_w_window->changeProjection(width, height);
 	glMatrixMode(GL_MODELVIEW);
 }
+

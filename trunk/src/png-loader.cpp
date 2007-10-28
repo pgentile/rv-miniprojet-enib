@@ -2,8 +2,9 @@
 #include <GL/glut.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <png.h>
+
+#include <string>
 
 /*****   Code provenant du genie d'Antoine   *****/
 
@@ -222,11 +223,10 @@ GLuint loadPNGTexture(const char *filename)
 		    png_tex->width, png_tex->height, 0, png_tex->format,
 		    GL_UNSIGNED_BYTE, png_tex->texels);
 
-      /*
+      /* Pierre : marche mieux sur mon Ubuntu, sans savoir pourquoi... */
       gluBuild2DMipmaps (GL_TEXTURE_2D, png_tex->internalFormat,
 			 png_tex->width, png_tex->height,
 			 png_tex->format, GL_UNSIGNED_BYTE, png_tex->texels);
-      */
 
       tex_id = png_tex->id;
 
@@ -254,3 +254,4 @@ unsigned int PngLoader::load(string path)
 	}
 	return _textures[path];
 }
+

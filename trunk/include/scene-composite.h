@@ -18,7 +18,7 @@ public:
 	virtual void init(void);
 	
 	void addChild(SceneElement* element);
-	vector<SceneElement*> getChildren(void);
+	vector<SceneElement*>& getChildren(void);
 	
 private:
 

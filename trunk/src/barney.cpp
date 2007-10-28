@@ -23,7 +23,7 @@ void Barney::render(void)
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
 
-	glBegin(GL_POLYGON);
+	glBegin(GL_QUADS);
 	glColor4f(1.0, 1.0, 1.0, 1.0);
 	glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, 1.0, 0.0);
 	glTexCoord2f(1.0, 1.0); glVertex3f(1.0, 1.0, 0.0);

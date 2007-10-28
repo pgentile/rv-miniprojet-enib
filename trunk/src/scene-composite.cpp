@@ -31,7 +31,7 @@ void SceneComposite::addChild(SceneElement* element)
 	_children.push_back(element);
 }
 
-vector<SceneElement*> SceneComposite::getChildren(void)
+vector<SceneElement*>& SceneComposite::getChildren(void)
 {
 	return _children;
 }
