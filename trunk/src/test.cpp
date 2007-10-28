@@ -5,6 +5,8 @@
 #include "positioned-element.h"
 #include "smoke-generator.h"
 #include "barney.h"
+#include "arriere-plan.h"
+#include "avant-plan.h"
 #include <GL/glut.h>
 
 class Sphere: public SceneElement, public PositionedElement
@@ -14,8 +16,8 @@ public:
 
 	void animate(int)
 	{
-		//setX(getX() + 0.01);
-		//setY(getY() + 0.007);
+		setX(getX() + 0.01);
+		setY(getY() + 0.007);
 	}
 
 	void render(void)
@@ -27,7 +29,7 @@ public:
 
 	void init(void)
 	{
-		//setX(-5.0);
+		setX(-5.0);
 		setY(-4.0);
 		setZ(1.0);
 	}
@@ -39,9 +41,11 @@ int main(int argc, char** argv)
 	TestWindow window;
 	TestScene scene;
 	Sphere sphere;
+	ArrierePlan arrierePlan;
+	AvantPlan avantPlan;
 	SmokeGenerator smokeGenerator(&sphere);
 	Barney barney;
-	
+
 	scene.addChild(&smokeGenerator);
 	scene.addChild(&barney);
 	scene.addChild(&sphere);
