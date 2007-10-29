@@ -2,23 +2,28 @@
 #include "png-loader.h"
 #include <GL/glut.h>
 
-Smoke::Smoke(float x, float y, float z)
+Smoke::Smoke(void)
 {
-	_x = x;
-	_y = y;
-	_z = z;
-	_height = 0.0;
-	_scale = 0.1;
-	_alpha = 1.0;
+	reset(0.0, 0.0, 0.0);
 }
 
 void Smoke::animate(int)
 {
-	_height += 0.018;
-	_scale += 0.005;
+	_height += 0.008;
+	_scale += 0.002;
 	if (_alpha > 0.0) {
-		_alpha -= 0.001;
+		_alpha -= 0.0002;
 	}
+}
+
+void Smoke::reset(float x, float y, float z)
+{
+	setX(x);
+	setY(y);
+	setZ(z);
+	_height = 0.0;
+	_scale = 0.5;
+	_alpha = 1.0;
 }
 
 void Smoke::render(void)
@@ -27,8 +32,8 @@ void Smoke::render(void)
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
 
-	glTranslatef(_x, _y + _height, _z);
-	glScalef(_scale, _scale, 1.0);
+	glTranslatef(getX(), getY() + _height, getZ());
+	glScalef(_scale * 1.5, _scale, 1.0);
 
 	glBegin(GL_POLYGON);
 	glColor4f(1.0, 1.0, 1.0, _alpha);

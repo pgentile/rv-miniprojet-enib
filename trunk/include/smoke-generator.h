@@ -3,6 +3,9 @@
 
 #include "scene-composite.h"
 #include "positioned-element.h"
+#include "smoke.h"
+
+#define SMOKE_CLOUDS_MAX 30
 
 using namespace std;
 
@@ -18,10 +21,14 @@ public:
 	virtual void render(void);
 
 	PositionedElement* getFollowedElement(void);
-	
+
 private:
 
 	PositionedElement* _followedElement;
+
+	Smoke* _smokeClouds;
+
+	
 
 };
 

@@ -5,25 +5,32 @@
 SmokeGenerator::SmokeGenerator(PositionedElement* followedElement)
 {
 	_followedElement = followedElement;
+	_smokeClouds = new Smoke[SMOKE_CLOUDS_MAX];
 }
 
 void SmokeGenerator::animate(int timerInterval)
 {
 	static int remainingIntervals = 0;
+	static int currentCloud = 0;
 	if (remainingIntervals <= 0) {
-		vector<SceneElement*>& children = getChildren();
-		if (children.size() == 50) {
-			SceneElement* smoke = children[0];
-			children.erase(children.begin());
-			delete smoke;
-		}
 		float x = _followedElement->getX();
 		float y = _followedElement->getY();
 		float z = _followedElement->getZ();
-		Smoke* smoke = new Smoke(x, y, z);
-		smoke->init();
-		addChild(smoke);
-		remainingIntervals = 25;
+		vector<SceneElement*>& children = getChildren();
+		int size = children.size();
+		if (size == SMOKE_CLOUDS_MAX) {
+			Smoke* smoke = (Smoke*) children[currentCloud];
+			smoke->reset(x, y, z);
+			currentCloud++;
+			if (currentCloud == SMOKE_CLOUDS_MAX) {
+				currentCloud -= SMOKE_CLOUDS_MAX;
+			}
+		} else {
+			Smoke* smoke = _smokeClouds + size;
+			smoke->reset(x, y, z);
+			addChild(smoke);
+		}
+		remainingIntervals = 100;
 	}
 	remainingIntervals--;
 	SceneComposite::animate(timerInterval);

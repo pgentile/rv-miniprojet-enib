@@ -15,15 +15,15 @@ O_FILES=png-loader.o scene.o scene-composite.o scene-element.o transformation.o 
 all: $(APPS)
 
 # Notre application enib
-enib: enib.o $(O_FILES)
+enib: $(O_FILES) enib.o smoke-generator.o smoke.o tree.o
 	$(CC) -o $@ $^ $(LD_FLAGS)
 
 # Notre application de test
-test: test.o test-window.o test-scene.o smoke-generator.o smoke.o barney.o arriere-plan.o avant-plan.o $(O_FILES)
+test: $(O_FILES) test.o test-window.o test-scene.o smoke-generator.o smoke.o barney.o arriere-plan.o avant-plan.o
 	$(CC) -o $@ $^ $(LD_FLAGS)
 
 # Application de test des lumieres
-lights: lights.o $(O_FILES)
+lights: $(O_FILES) lights.o
 	$(CC) -o $@ $^ $(LD_FLAGS)
 
 # Regle generique

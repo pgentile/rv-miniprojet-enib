@@ -2,21 +2,23 @@
 #define SMOKE_H
 
 #include "scene-element.h"
+#include "positioned-element.h"
 
-class Smoke: public SceneElement
+class Smoke: public SceneElement, public PositionedElement
 {
 
 public:
 
-	Smoke(float x, float y, float z);
+	Smoke(void);
 	
 	virtual void animate(int timerInterval);
 	
 	virtual void render(void);
+
+	void reset(float x, float y, float z);
 	
 private:
 
-	float _x, _y, _z;
 	float _height;
 	float _scale;
 	float _alpha;
