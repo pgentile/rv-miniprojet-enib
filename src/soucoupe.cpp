@@ -24,6 +24,8 @@ void Soucoupe::_render(void)
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	glTranslatef(x(), y(), z());
+
 	glRotatef(_angle, 0.0, 1.0, 0.0);
 	glScalef(0.2, 0.2, 0.2);
 	

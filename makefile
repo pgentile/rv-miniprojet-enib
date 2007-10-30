@@ -17,7 +17,8 @@ all: $(APPS)
 
 # Notre application enib
 enib: $(O_FILES) enib.o textured-rectangle.o depth-test-context.o alpha-test-context.o \
-	tree.o soucoupe.o soucoupe-model.o
+	tree.o soucoupe.o soucoupe-model.o positioned-element.o blending-context.o \
+	smoke-generator.o smoke.o
 	$(CC) -o $@ $^ $(LD_FLAGS)
 
 # Regle generique

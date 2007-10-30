@@ -22,7 +22,11 @@ public:
 
 protected:
 
+	virtual void _preRender(void);
+
 	virtual void _render(void);
+
+	virtual void _postRender(void);
 
 private:
 

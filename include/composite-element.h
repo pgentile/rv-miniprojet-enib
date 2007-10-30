@@ -14,7 +14,8 @@ class CompositeElement: public Element
 
 public:
 
-	void addChild(Element* element);
+	inline void addChild(Element* element) { _elements.push_back(element); }
+	inline vector<Element*>& getElements(void) { return _elements; }
 
 protected:
 

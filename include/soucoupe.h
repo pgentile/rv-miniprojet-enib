@@ -2,9 +2,10 @@
 #define SOUCOUPE_H
 
 #include "element.h"
+#include "positioned-element.h"
 #include <GL/glut.h>
 
-class Soucoupe: public Element
+class Soucoupe: public Element, public PositionedElement
 {
 
 public:
