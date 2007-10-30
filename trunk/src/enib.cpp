@@ -8,6 +8,9 @@
 #include "alpha-test-context.h"
 #include "tree.h"
 #include "soucoupe.h"
+#include "smoke-generator.h"
+#include "positioned-element.h"
+#include "element.h"
 #include <GL/glut.h>
 
 #define ESC_KEY 27
@@ -58,6 +61,26 @@ protected:
 };
 
 
+class Sphere: public Element, public PositionedElement
+{
+
+protected:
+
+	virtual void _animate(int)
+	{
+		setX(x() + 0.007);
+	}
+
+	virtual void _render(void)
+	{
+		glTranslatef(x(), y(), z());
+		glColor3f(1.0, 0.0, 0.0);
+		glutWireSphere(0.5, 10, 10);
+	}
+
+};
+
+
 /**
  * Main
  */
@@ -100,7 +123,14 @@ int main(int argc, char** argv)
 
 	// Soucoupe
 	Soucoupe soucoupe;
-	soucoupe.addTransformation(new Translation(0.0, 2.0, 7.0));
+	soucoupe.setX(-3.5);
+	soucoupe.setY(-3.5);
+	soucoupe.setZ(6.0);
+
+	// Générateur de fumée
+	SmokeGenerator smokeGenerator(&soucoupe);
+	scene.addChild(&smokeGenerator);
+
 	scene.addChild(&soucoupe);
 
 	Window::loop();

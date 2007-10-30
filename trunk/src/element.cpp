@@ -1,11 +1,16 @@
 #include "element.h"
 #include <GL/glut.h>
 
-#include <iostream>
-using namespace std;
+Element::Element(void)
+{
+	_visible = true;
+}
 
 void Element::animate(int timerInterval)
 {
+	if (!_visible) { // Ne rien faire si caché
+		return;
+	}
 	// Appliquer les animations des transformations
 	if (_transformations.size() > 0) {
 		for (vector<Transformation*>::iterator i = _transformations.begin(); i != _transformations.end(); ++i) {
@@ -18,6 +23,9 @@ void Element::animate(int timerInterval)
 
 void Element::render(void)
 {
+	if (!_visible) { // Ne rien faire si caché
+		return;
+	}
 	int size = _transformations.size();
 	if (size > 0) { // Appliquer les transformations avant de générer l'objet
 		glPushMatrix();

@@ -15,6 +15,8 @@ class Element
 
 public:
 
+	Element(void);
+
 	void animate(int timerInterval);
 
 	void render(void);
@@ -22,6 +24,9 @@ public:
 	void addTransformation(Transformation* transformation);
 
 	void addContext(Context* context);
+
+	inline void setVisible(bool visible) { _visible = visible; }
+	inline bool isVisible(void) { return _visible; }
 
 protected:
 
@@ -42,6 +47,9 @@ private:
 	vector<Transformation*> _transformations;
 
 	vector<Context*> _contexts;
+
+	bool _visible;
+
 };
 
 #endif
