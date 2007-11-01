@@ -11,8 +11,9 @@
 #include "smoke-generator.h"
 #include "positioned-element.h"
 #include "element.h"
+#include "soucoupe-light-sphere.h"
+#include "soucoupe-cockpit.h"
 #include <GL/glut.h>
-
 #define ESC_KEY 27
 
 using namespace std;
@@ -57,6 +58,31 @@ protected:
 	{
 		gluLookAt(0.0, 0.0, 15.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	}
+	
+	virtual void _setupLighting(void)
+	{
+		GLfloat ambientLight[]={0.7,0.7,0.7,1.0};    	             // set ambient light parameters
+		glLightfv(GL_LIGHT0,GL_AMBIENT,ambientLight);
+
+		GLfloat diffuseLight[]={0.8,0.8,0.8,1.0};    	             // set diffuse light parameters
+		glLightfv(GL_LIGHT0,GL_DIFFUSE,diffuseLight);
+		
+		GLfloat specularLight[]={0.5,0.5,0.5,1.0};  	               // set specular light parameters
+		glLightfv(GL_LIGHT0,GL_SPECULAR,specularLight);
+
+		GLfloat lightPos[]={-60.0,5.0,7.0,0.0};      	              // set light position
+		glLightfv(GL_LIGHT0,GL_POSITION,lightPos);
+		          	        
+		glEnable(GL_LIGHTING);                       	              // enable lighting
+		//glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight); 	     // set light model
+		glEnable(GL_COLOR_MATERIAL);                 	              // activate material
+		glColorMaterial(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE);
+		glEnable(GL_NORMALIZE);
+		
+	
+	
+	}
+	
 
 };
 
@@ -123,10 +149,51 @@ int main(int argc, char** argv)
 
 	// Soucoupe
 	Soucoupe soucoupe;
+	soucoupe.addContext(new DepthTestContext());
 	soucoupe.setX(-3.5);
 	soucoupe.setY(-3.5);
 	soucoupe.setZ(6.0);
 
+	// Cockpit de la soucoupe
+	SoucoupeCockpit cockpit;
+	cockpit.addTransformation(new Translation(0.0,2.7,0.0));
+	cockpit.addContext(new DepthTestContext());
+	
+	// Boules de Lumière de la Soucoupe
+	SoucoupeLightSphere sphere1(GL_LIGHT0);
+	SoucoupeLightSphere sphere2(GL_LIGHT1);
+	SoucoupeLightSphere sphere3(GL_LIGHT2);
+	SoucoupeLightSphere sphere4(GL_LIGHT3);
+	SoucoupeLightSphere sphere5(GL_LIGHT4);
+	SoucoupeLightSphere sphere6(GL_LIGHT5);
+	
+	sphere1.addContext(new DepthTestContext());
+	sphere2.addContext(new DepthTestContext());
+	sphere3.addContext(new DepthTestContext());
+	sphere4.addContext(new DepthTestContext());
+	sphere5.addContext(new DepthTestContext());
+	sphere6.addContext(new DepthTestContext());
+	
+	
+	sphere1.addTransformation(new Translation(0.0, 1.2, -4.0));
+	sphere2.addTransformation(new Rotation(60.0, 0.0, 1.0, 0.0));
+	sphere2.addTransformation(new Translation(0.0, 1.2, -4.0));
+	sphere3.addTransformation(new Rotation(120.0, 0.0, 1.0, 0.0));
+	sphere3.addTransformation(new Translation(0.0, 1.2, -4.0));
+	sphere4.addTransformation(new Rotation(180.0, 0.0, 1.0, 0.0));
+	sphere4.addTransformation(new Translation(0.0, 1.2, -4.0));
+	sphere5.addTransformation(new Rotation(240.0, 0.0, 1.0, 0.0));
+	sphere5.addTransformation(new Translation(0.0, 1.2, -4.0));
+	sphere6.addTransformation(new Rotation(300.0, 0.0, 1.0, 0.0));
+	sphere6.addTransformation(new Translation(0.0, 1.2, -4.0));
+	
+	soucoupe.addChild(&cockpit);
+	soucoupe.addChild(&sphere1);
+	soucoupe.addChild(&sphere2);
+	soucoupe.addChild(&sphere3);
+	soucoupe.addChild(&sphere4);
+	soucoupe.addChild(&sphere5);
+	soucoupe.addChild(&sphere6);
 	// Générateur de fumée
 	SmokeGenerator smokeGenerator(&soucoupe);
 	scene.addChild(&smokeGenerator);

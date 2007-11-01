@@ -15,11 +15,14 @@ void Soucoupe::_animate(int timerInterval)
 	if (_angle > 360.0) {
 		_angle -= 360.0;
 	}
+	
+	CompositeElement::_animate(timerInterval);
 }
 	
 void Soucoupe::_render(void)
 {
-	unsigned int texture = PngLoader::load("damierMoche.png");
+
+	unsigned int texture = PngLoader::load("textures/metal.png");
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -27,6 +30,7 @@ void Soucoupe::_render(void)
 	glTranslatef(x(), y(), z());
 
 	glRotatef(_angle, 0.0, 1.0, 0.0);
+	glRotatef(_angle, 0.0, 0.0, 1.0);
 	glScalef(0.2, 0.2, 0.2);
 	
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -38,26 +42,29 @@ void Soucoupe::_render(void)
 	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR); 
 	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
 	
+	//Material 
+	
 	// enable texture coordinate generation
 	glEnable(GL_TEXTURE_GEN_S); 
 	glEnable(GL_TEXTURE_GEN_T); 
 
 	// generate the texture coordinates
-	static GLfloat sgenparams[] = { 1, 0, 0, 0 }; 
-	static GLfloat tgenparams[] = { 0, 1, 0, 0 };
+	static GLfloat sgenparams[] = { 0.4, 0, 0, 0 }; 
+	static GLfloat tgenparams[] = { 0, 0.5, 0, 0 };
 	glTexGenfv(GL_S, GL_OBJECT_PLANE, sgenparams);
 	glTexGenfv(GL_T, GL_OBJECT_PLANE, tgenparams);
 
-	glEnable(GL_DEPTH_TEST);
-	glColor3f(0.4, 0.4, 0.4);
+	glColor4f(0.55, 0.58, 0.59, 1.0);
 	_drawUFO();
-	glDisable(GL_DEPTH_TEST);
+	
 
 	// disable texture coordinate generation
 	glDisable(GL_TEXTURE_GEN_T); 
 	glDisable(GL_TEXTURE_GEN_S); 
 	
 	glDisable(GL_TEXTURE_2D);
+	
+	CompositeElement::_render();
 	
 }
 

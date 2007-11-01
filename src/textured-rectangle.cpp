@@ -15,6 +15,7 @@ TexturedRectangle::TexturedRectangle(string texturePath, GLfloat width, GLfloat 
 
 void TexturedRectangle::_preRender(void)
 {
+	glDisable(GL_LIGHTING);     
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, _texture);
 }
@@ -32,6 +33,7 @@ void TexturedRectangle::_render(void)
 
 void TexturedRectangle::_postRender(void)
 {
+	glEnable(GL_LIGHTING);     
 	glDisable(GL_TEXTURE_2D);
 }
 

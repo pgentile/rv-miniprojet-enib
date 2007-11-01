@@ -17,7 +17,7 @@ protected:
 	virtual void _render(void);
 
 	virtual void _setCamera(void) = 0;
-
+	virtual void _setupLighting(void) = 0;
 };
 
 #endif
