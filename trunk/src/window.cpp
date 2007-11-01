@@ -106,6 +106,9 @@ void Window::create(int argc, char** argv, Window& window)
 	glutKeyboardFunc(_w_onKeyPress);
 	glutSpecialFunc(_w_onSpecialKeyPress);
 	glutTimerFunc(_w_window->getTimerInterval(), _w_onTick, 0);
+	
+	
+	
 }
 
 void Window::loop(void)

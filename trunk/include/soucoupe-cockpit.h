@@ -1,16 +1,16 @@
-#ifndef SOUCOUPE_H
-#define SOUCOUPE_H
+#ifndef SOUCOUPE_COCKPIT_H
+#define SOUCOUPE_COCKPIT_H
 
-#include "composite-element.h"
+#include "element.h"
 #include "positioned-element.h"
 #include <GL/glut.h>
 
-class Soucoupe: public CompositeElement, public PositionedElement
+class SoucoupeCockpit: public Element, public PositionedElement
 {
 
 public:
 
-	Soucoupe(void);
+	SoucoupeCockpit(void);
 
 protected:
 	
