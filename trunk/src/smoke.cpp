@@ -8,7 +8,6 @@ Smoke::Smoke(void)
 	_texture = PngLoader::load("textures/poof.png");
 	_scaleWidth = _scaleHeight = 0.0;
 	_alpha = 1.0;
-	addContext(new LightingContext(GL_LIGHT0));
 }
 
 void Smoke::_animate(int timerInterval)
@@ -21,7 +20,7 @@ void Smoke::_animate(int timerInterval)
 
 void Smoke::_preRender(void)
 {
-	//glDisable(GL_LIGHTING); 
+	glDisable(GL_LIGHTING); 
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, _texture);
 }
@@ -42,6 +41,6 @@ void Smoke::_render(void)
 void Smoke::_postRender(void)
 {
 	glDisable(GL_TEXTURE_2D);
-	//glEnable(GL_LIGHTING); 
+	glEnable(GL_LIGHTING); 
 }
 
