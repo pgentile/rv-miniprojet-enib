@@ -21,11 +21,17 @@ void Soucoupe::_animate(int timerInterval)
 	
 void Soucoupe::_render(void)
 {
-
+	// Material Parameters
+	GLfloat off[] = {0.0, 0.0, 0.0, 0.0};
+	GLfloat white[] = {1.0, 1.0, 1.0, 1.0};
+	GLfloat red[] = {1.0, 0.0, 0.0, 1.0};
+	GLfloat grey[] = {0.55, 0.58, 0.59, 1.0};
+	GLfloat shiny[] = {100.0};
+	GLfloat dull[] = {0.0};
+	GLfloat mat_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
+	
+	// Loading Texture
 	unsigned int texture = PngLoader::load("textures/metal.png");
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glTranslatef(x(), y(), z());
 
@@ -42,8 +48,6 @@ void Soucoupe::_render(void)
 	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR); 
 	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
 	
-	//Material 
-	
 	// enable texture coordinate generation
 	glEnable(GL_TEXTURE_GEN_S); 
 	glEnable(GL_TEXTURE_GEN_T); 
@@ -54,10 +58,14 @@ void Soucoupe::_render(void)
 	glTexGenfv(GL_S, GL_OBJECT_PLANE, sgenparams);
 	glTexGenfv(GL_T, GL_OBJECT_PLANE, tgenparams);
 
-	glColor4f(0.55, 0.58, 0.59, 1.0);
+	// Materials
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, grey);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, red);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, shiny);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, off);
+	
 	_drawUFO();
 	
-
 	// disable texture coordinate generation
 	glDisable(GL_TEXTURE_GEN_T); 
 	glDisable(GL_TEXTURE_GEN_S); 
