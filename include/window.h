@@ -39,6 +39,11 @@ public:
 
 	static void loop(void);
 
+protected:
+	
+	void _displayEnter(void);
+	void _displayParking(void);
+
 private:
 
 	struct {
@@ -54,6 +59,7 @@ private:
 	unsigned int _refreshRate;
 	
 	Scene* _scene;
+
 
 };
 

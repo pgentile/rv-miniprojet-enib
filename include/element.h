@@ -3,6 +3,7 @@
 
 #include "transformation.h"
 #include "context.h"
+#include <string>
 #include <vector>
 
 using namespace std;
@@ -27,6 +28,8 @@ public:
 
 	inline void setVisible(bool visible) { _visible = visible; }
 	inline bool isVisible(void) { return _visible; }
+
+	inline virtual std::string isA(void) {return "Element";}
 
 protected:
 

@@ -5,7 +5,8 @@ CC_FLAGS=-W -pedantic -ansi $(INCLUDES)
 LD_FLAGS=-L/usr/X11R6/lib -L./lib -lGL -lGLU -lglut -lX11 -lXmu -lXi -lm -lpng
 APPS=enib
 O_FILES=png-loader.o vertex.o vector.o size.o color.o transformation.o translation.o \
-	rotation.o scale.o element.o composite-element.o window.o scene.o
+	rotation.o scale.o element.o composite-element.o window.o scene.o text-enter.o \
+	text-parking.o
 
 # Quelques notes :
 #   - $@ : nom de la cible
@@ -18,7 +19,8 @@ all: $(APPS)
 # Notre application enib
 enib: $(O_FILES) enib.o textured-rectangle.o depth-test-context.o alpha-test-context.o \
 	tree.o soucoupe.o soucoupe-new-model.o soucoupe-cockpit.o positioned-element.o \
-	soucoupe-light-sphere.o blending-context.o smoke-generator.o smoke.o lighting-context.o
+	soucoupe-light-sphere.o blending-context.o smoke-generator.o smoke.o lighting-context.o \
+	text-enter.o text-parking.o
 	$(CC) -o $@ $^ $(LD_FLAGS)
 
 # Regle generique
