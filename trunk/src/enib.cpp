@@ -7,6 +7,8 @@
 #include "depth-test-context.h"
 #include "alpha-test-context.h"
 #include "tree.h"
+#include "text-enter.h"
+#include "text-parking.h"
 #include "soucoupe.h"
 #include "smoke-generator.h"
 #include "positioned-element.h"
@@ -14,6 +16,7 @@
 #include "soucoupe-light-sphere.h"
 #include "soucoupe-cockpit.h"
 #include <GL/glut.h>
+#include <iostream>
 #define ESC_KEY 27
 
 using namespace std;
@@ -29,8 +32,13 @@ public:
 
 	virtual void onKeyPress(unsigned char key, int x, int y)
 	{
-		switch (key) {
-
+	switch (key) {
+		case 'e': /* Indique ou est l'entree */
+			_displayEnter();
+			break;
+    		case 'p':  /* Indique ou sont les parkings */
+			_displayParking();
+			break;
 		case ESC_KEY:
 			exit(0);
 			break;
@@ -131,6 +139,19 @@ int main(int argc, char** argv)
 	enib.addContext(new AlphaTestContext(GL_GREATER, 0.95));
 	enib.addContext(new DepthTestContext());
 	scene.addChild(&enib);
+
+
+	// Texte Entree Enib
+	TextEnter entreeEnib;
+	entreeEnib.addTransformation(new Translation(-1.0, -6.0, 0.0));
+	scene.addChild(&entreeEnib);
+
+
+	// Texte Parking
+	TextParking parking;
+	scene.addChild(&parking);
+
+
 
 	// Arbre 1
 	Tree tree1;
