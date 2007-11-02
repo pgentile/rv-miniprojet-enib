@@ -17,7 +17,7 @@ void SoucoupeCockpit::_render(void)
 	GLfloat off[] = {0.0, 0.0, 0.0, 0.0};
 	GLfloat white[] = {1.0, 1.0, 1.0, 1.0};
 	GLfloat red[] = {1.0, 0.0, 0.0, 1.0};
-	GLfloat deep_blue[] = {0.1, 0.5, 0.8, 1.0};
+	GLfloat deep_blue[] = {0.0, 0.0, 0.5, 0.6};
 	GLfloat shiny[] = {10.0};
 	GLfloat dull[] = {0.0};
 	GLfloat mat_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
@@ -36,7 +36,7 @@ void SoucoupeCockpit::_render(void)
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, deep_blue);
 	
 	// Render Sphere
-	glColor4f(0.0,0.0,0.5,0.6);
+	
 	glutSolidSphere(1.8 , 15 , 15 );
 
 	glDisable(GL_BLEND);

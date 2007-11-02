@@ -5,6 +5,7 @@
 #include "rotation.h"
 #include "scale.h"
 #include "depth-test-context.h"
+#include "blending-context.h"
 #include "alpha-test-context.h"
 #include "tree.h"
 #include "text-enter.h"
@@ -83,8 +84,8 @@ protected:
 		          	        
 		glEnable(GL_LIGHTING);                       	              // enable lighting
 		//glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight); 	     // set light model
-		glEnable(GL_COLOR_MATERIAL);                 	              // activate material
-		glColorMaterial(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE);
+		//glEnable(GL_COLOR_MATERIAL);                 	              // activate material
+		
 		glEnable(GL_NORMALIZE);
 		
 	
@@ -171,6 +172,7 @@ int main(int argc, char** argv)
 	// Soucoupe
 	Soucoupe soucoupe;
 	soucoupe.addContext(new DepthTestContext());
+	soucoupe.addContext(new BlendingContext(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA));
 	soucoupe.setX(-3.5);
 	soucoupe.setY(-3.5);
 	soucoupe.setZ(6.0);

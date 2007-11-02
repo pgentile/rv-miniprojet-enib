@@ -23,8 +23,12 @@ void SoucoupeLightSphere::_animate(int timerInterval)
 	
 void SoucoupeLightSphere::_setColor()
 {
-	if( _color == COLOR_RED ) glColor3f(1.0,0.0,0.0);
-	else glColor4f(1.0,1.0,1.0,0.0);
+	GLfloat white[] = {1.0, 1.0, 1.0, 1.0};
+	GLfloat red[] = {1.0, 0.0, 0.0, 1.0};
+	
+	if( _color == COLOR_RED ) glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, red);
+	else glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, white);
+	
 }
 
 void SoucoupeLightSphere::_setLights()
@@ -38,7 +42,6 @@ void SoucoupeLightSphere::_setLights()
 		glLightfv(_lightNumber, GL_DIFFUSE, diffuseLight);
 		glLightfv(_lightNumber, GL_SPECULAR, specularLight);
 		glLightfv(_lightNumber, GL_POSITION, position);
-
 	}
 	else {
 		GLfloat ambientLight[] = { 1.0f, 1.0f, 1.0f, 0.6f };
@@ -51,6 +54,9 @@ void SoucoupeLightSphere::_setLights()
 		glLightfv(_lightNumber, GL_POSITION, position);
 
 	}
+	glLightf(_lightNumber,GL_CONSTANT_ATTENUATION,.1f);
+	glLightf(_lightNumber,GL_LINEAR_ATTENUATION,.0f);
+	glLightf(_lightNumber,GL_QUADRATIC_ATTENUATION,10.0f);
 }
 void SoucoupeLightSphere::_render(void)
 {
