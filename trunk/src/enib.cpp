@@ -52,6 +52,31 @@ public:
 		gluPerspective(60.0, (float) width / height, 0.1, 70.0);
 	}
 
+protected:
+
+	void _displayEnter(void)
+	{
+		vector<Element*> elements = getScene()->getElements();
+		for (vector<Element*>::iterator i = elements.begin(); i != elements.end(); ++i) {
+			if (dynamic_cast<TextEnter*>(*i) != 0) {
+				bool visible = (*i)->isVisible();
+				(*i)->setVisible(!visible);
+			}
+		}
+	}
+
+	void _displayParking(void)
+	{
+		vector<Element*> elements = getScene()->getElements();
+		for (vector<Element*>::iterator i = elements.begin(); i != elements.end(); ++i) {
+			if (dynamic_cast<TextParking*>(*i) != 0) {
+				bool visible = (*i)->isVisible();
+				(*i)->setVisible(!visible);
+			}
+		
+		}
+	}
+
 };
 
 

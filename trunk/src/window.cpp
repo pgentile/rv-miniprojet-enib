@@ -69,29 +69,6 @@ unsigned int Window::getTimerInterval(void)
 	return (unsigned int) (1000.0 / _refreshRate);
 }
 
-void Window::_displayEnter(void)
-{
-	vector<Element*> elements = _scene->getElements();
-	for (vector<Element*>::iterator i = elements.begin(); i != elements.end(); ++i) {
-		if((*i)->isA() == "TextEnter") {
-			bool visible = (*i)->isVisible();
-			(*i)->setVisible(!visible);
-		}
-	}
-}
-
-void Window::_displayParking(void)
-{
-	vector<Element*> elements = _scene->getElements();
-	for (vector<Element*>::iterator i = elements.begin(); i != elements.end(); ++i) {
-		if((*i)->isA() == "TextParking") {
-			bool visible = (*i)->isVisible();
-			(*i)->setVisible(!visible);
-		}
-	
-	}
-}
-
 void Window::onKeyPress(unsigned char key, int x, int y)
 {
 	// Ne rien faire

@@ -15,8 +15,6 @@ public:
 
 	TextParking(void);
 
-	inline virtual std::string isA(void) {return "TextParking";}
-
 protected:
 
 	void _animate(int timerInterval);
