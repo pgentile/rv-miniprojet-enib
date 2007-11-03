@@ -14,8 +14,6 @@ public:
 
 	TextEnter(void);
 
-	inline virtual std::string isA(void) {return "TextEnter";}
-
 protected:
 
 	void _animate(int timerInterval);

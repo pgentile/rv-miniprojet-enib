@@ -29,8 +29,6 @@ public:
 	inline void setVisible(bool visible) { _visible = visible; }
 	inline bool isVisible(void) { return _visible; }
 
-	inline virtual std::string isA(void) {return "Element";}
-
 protected:
 
 	virtual void _animate(int timerInterval);
