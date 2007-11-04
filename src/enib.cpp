@@ -178,13 +178,19 @@ int main(int argc, char** argv)
 	scene.addChild(&tree3);
 
 	// Soucoupe 1
+	
+	// Initializing random position
+	srand ( time(NULL) );
+	double soucoupe1RandX = 4.0 - ( ( rand() % 100 + 1 ) / 10.0 );
+	double soucoupe1RandZ = 5.0 - ( ( rand() % 40 + 1 ) / 10.0 );
+	
 	Soucoupe soucoupe1;
 	soucoupe1.addContext(new DepthTestContext());
 	soucoupe1.addContext(new LightingContext());
 	soucoupe1.addContext(new BlendingContext(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA));
-	soucoupe1.setX(-3.5);
+	soucoupe1.setX(soucoupe1RandX);
 	soucoupe1.setY(1.0);
-	soucoupe1.setZ(4.0);
+	soucoupe1.setZ(soucoupe1RandZ);
 	soucoupe1.addTransformation(new LandingAnimation(&soucoupe1,0.004,0.0,-4.7,2.0));
 
 	// Soucoupe 2
