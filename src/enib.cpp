@@ -182,14 +182,17 @@ int main(int argc, char** argv)
 	// Initializing random position
 	srand ( time(NULL) );
 	double soucoupe1RandX = 4.0 - ( ( rand() % 100 + 1 ) / 10.0 );
+	double soucoupe2RandX = 0.0 - ( ( rand() % 100 + 1 ) / 10.0 );
 	double soucoupe1RandZ = 5.0 - ( ( rand() % 40 + 1 ) / 10.0 );
+	double soucoupe2RandZ = -1.0 - ( ( rand() % 20 + 1 ) / 10.0 );
+	
 	
 	Soucoupe soucoupe1;
 	soucoupe1.addContext(new DepthTestContext());
 	soucoupe1.addContext(new LightingContext());
 	soucoupe1.addContext(new BlendingContext(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA));
 	soucoupe1.setX(soucoupe1RandX);
-	soucoupe1.setY(1.0);
+	soucoupe1.setY(12.0);
 	soucoupe1.setZ(soucoupe1RandZ);
 	soucoupe1.addTransformation(new LandingAnimation(&soucoupe1,0.004,0.0,-4.7,2.0));
 
@@ -198,9 +201,9 @@ int main(int argc, char** argv)
 	soucoupe2.addContext(new DepthTestContext());
 	soucoupe2.addContext(new LightingContext());
 	soucoupe2.addContext(new BlendingContext(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA));
-	soucoupe2.setX(-3.5);
-	soucoupe2.setY(5.5);
-	soucoupe2.setZ(-4.0);
+	soucoupe2.setX(soucoupe2RandX);
+	soucoupe2.setY(12.0);
+	soucoupe2.setZ(soucoupe2RandX);
 	soucoupe2.addTransformation(new LandingAnimation(&soucoupe2,0.004,-1.0,-4.7,-3.0));
 	
 	// Générateur de fumée
