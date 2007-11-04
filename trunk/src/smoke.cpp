@@ -20,14 +20,15 @@ void Smoke::_animate(int timerInterval)
 
 void Smoke::_preRender(void)
 {
-	glDisable(GL_LIGHTING); 
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, _texture);
 }
 
 void Smoke::_render(void)
 {
+	GLfloat mat_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
 	glTranslatef(x(), y(), z());
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_specular);
 	glScalef(_scaleWidth, _scaleHeight, 1.0);
 	glBegin(GL_QUADS);
 	glColor4f(1.0, 1.0, 1.0, _alpha);
@@ -40,7 +41,6 @@ void Smoke::_render(void)
 
 void Smoke::_postRender(void)
 {
-	glDisable(GL_TEXTURE_2D);
-	glEnable(GL_LIGHTING); 
+	glDisable(GL_TEXTURE_2D); 
 }
 

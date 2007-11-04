@@ -55,7 +55,7 @@ void SoucoupeLightSphere::_setLights()
 
 	}
 	glLightf(_lightNumber,GL_CONSTANT_ATTENUATION,.1f);
-	glLightf(_lightNumber,GL_LINEAR_ATTENUATION,.0f);
+	glLightf(_lightNumber,GL_LINEAR_ATTENUATION,2.0f);
 	glLightf(_lightNumber,GL_QUADRATIC_ATTENUATION,10.0f);
 }
 void SoucoupeLightSphere::_render(void)
