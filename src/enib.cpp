@@ -13,6 +13,7 @@
 #include "text-parking.h"
 #include "soucoupe.h"
 #include "smoke-generator.h"
+#include "landing-animation.h"
 #include "positioned-element.h"
 #include "element.h"
 #include "soucoupe-light-sphere.h"
@@ -178,27 +179,29 @@ int main(int argc, char** argv)
 
 	// Soucoupe 1
 	Soucoupe soucoupe1;
-	GLenum lights1[] = {GL_LIGHT0,GL_LIGHT1,GL_LIGHT2,GL_LIGHT3,GL_LIGHT4,GL_LIGHT5};
 	soucoupe1.addContext(new DepthTestContext());
 	soucoupe1.addContext(new LightingContext());
 	soucoupe1.addContext(new BlendingContext(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA));
 	soucoupe1.setX(-3.5);
-	soucoupe1.setY(-3.5);
-	soucoupe1.setZ(6.0);
+	soucoupe1.setY(1.0);
+	soucoupe1.setZ(4.0);
+	soucoupe1.addTransformation(new LandingAnimation(&soucoupe1,0.004,0.0,-4.7,2.0));
 
 	// Soucoupe 2
 	Soucoupe soucoupe2;
-	GLenum lights2[] = {GL_LIGHT6,GL_LIGHT7};
 	soucoupe2.addContext(new DepthTestContext());
 	soucoupe2.addContext(new LightingContext());
 	soucoupe2.addContext(new BlendingContext(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA));
 	soucoupe2.setX(-3.5);
-	soucoupe2.setY(3.5);
+	soucoupe2.setY(5.5);
 	soucoupe2.setZ(-4.0);
+	soucoupe2.addTransformation(new LandingAnimation(&soucoupe2,0.004,-1.0,-4.7,-3.0));
 	
 	// Générateur de fumée
 	SmokeGenerator smokeGenerator(&soucoupe1);
 	SmokeGenerator smokeGenerator2(&soucoupe2);
+	smokeGenerator2.addContext(new DepthTestContext());
+	
 	scene.addChild(&smokeGenerator);
 	scene.addChild(&smokeGenerator2);
 	
