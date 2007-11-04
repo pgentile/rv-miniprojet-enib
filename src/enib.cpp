@@ -36,12 +36,30 @@ public:
 	virtual void onKeyPress(unsigned char key, int x, int y)
 	{
 	switch (key) {
-		case 'e': /* Indique ou est l'entree */
+		case 'o': /* Indique ou est l'entree */
 			_displayEnter();
 			break;
     		case 'p':  /* Indique ou sont les parkings */
 			_displayParking();
 			break;
+		case 'z': /* Fait remonter les soucoupes */
+			_ufoUp();
+			break;
+		case 'q': /* Fait aller les soucoupes sur la gauche */
+			_ufoLeft();
+		break;
+		case 'd': /* Fait aller les soucoupes sur la droite */
+			_ufoRight();
+		break;
+		case 's': /* Fait descendre les soucoupes */
+			_ufoDown();
+		break;
+		case 'a': /* Pousse les soucoupes */
+			_ufoFar();
+		break;
+		case 'e': /* Attire les soucoupes */
+			_ufoNear();
+		break;
 		case ESC_KEY:
 			exit(0);
 			break;
@@ -56,6 +74,71 @@ public:
 
 protected:
 
+	void _ufoUp(void)
+	{
+		vector<Element*> elements = getScene()->getElements();
+		for (vector<Element*>::iterator i = elements.begin(); i != elements.end(); ++i) {
+			Soucoupe * soucoupe;
+			if ((soucoupe = dynamic_cast<Soucoupe*>(*i)) != 0) {
+				soucoupe->setY(soucoupe->y() + 0.3);
+			}
+		}
+	}
+	
+	void _ufoLeft(void)
+	{
+		vector<Element*> elements = getScene()->getElements();
+		for (vector<Element*>::iterator i = elements.begin(); i != elements.end(); ++i) {
+			Soucoupe * soucoupe;
+			if ((soucoupe = dynamic_cast<Soucoupe*>(*i)) != 0) {
+				soucoupe->setX(soucoupe->x() - 0.3);
+			}
+		}
+	}
+	
+	void _ufoRight(void)
+	{
+		vector<Element*> elements = getScene()->getElements();
+		for (vector<Element*>::iterator i = elements.begin(); i != elements.end(); ++i) {
+			Soucoupe * soucoupe;
+			if ((soucoupe = dynamic_cast<Soucoupe*>(*i)) != 0) {
+				soucoupe->setX(soucoupe->x() + 0.3);
+			}
+		}
+	}
+	
+	void _ufoDown(void)
+	{
+		vector<Element*> elements = getScene()->getElements();
+		for (vector<Element*>::iterator i = elements.begin(); i != elements.end(); ++i) {
+			Soucoupe * soucoupe;
+			if ((soucoupe = dynamic_cast<Soucoupe*>(*i)) != 0) {
+				soucoupe->setY(soucoupe->y() - 0.3);
+			}
+		}
+	}	
+	
+	void _ufoFar(void)
+	{
+		vector<Element*> elements = getScene()->getElements();
+		for (vector<Element*>::iterator i = elements.begin(); i != elements.end(); ++i) {
+			Soucoupe * soucoupe;
+			if ((soucoupe = dynamic_cast<Soucoupe*>(*i)) != 0) {
+				soucoupe->setZ(soucoupe->z() - 0.3);
+			}
+		}
+	}	
+	
+	void _ufoNear(void)
+	{
+		vector<Element*> elements = getScene()->getElements();
+		for (vector<Element*>::iterator i = elements.begin(); i != elements.end(); ++i) {
+			Soucoupe * soucoupe;
+			if ((soucoupe = dynamic_cast<Soucoupe*>(*i)) != 0) {
+				soucoupe->setZ(soucoupe->z() + 0.3);
+			}
+		}
+	}	
 	void _displayEnter(void)
 	{
 		vector<Element*> elements = getScene()->getElements();
@@ -181,7 +264,7 @@ int main(int argc, char** argv)
 	
 	// Initializing random position
 	srand ( time(NULL) );
-	double soucoupe1RandX = 4.0 - ( ( rand() % 100 + 1 ) / 10.0 );
+	double soucoupe1RandX = 20.0 - ( ( rand() % 200 + 1 ) / 5.0 );
 	double soucoupe2RandX = 0.0 - ( ( rand() % 100 + 1 ) / 10.0 );
 	double soucoupe1RandZ = 5.0 - ( ( rand() % 40 + 1 ) / 10.0 );
 	double soucoupe2RandZ = -1.0 - ( ( rand() % 20 + 1 ) / 10.0 );
