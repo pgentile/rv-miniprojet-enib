@@ -34,7 +34,7 @@ enum fondScene {
 	FOND_FEU
 };
 
-
+int _activeBackground;
 
 class EnibWindow: public Window
 {
@@ -42,7 +42,7 @@ class EnibWindow: public Window
 public:
 
 	vector<string> _backgrounds;
-	int _activeBackground;
+	
 	EnibWindow(void)
 	{
 		_activeBackground = 0;
@@ -206,6 +206,7 @@ protected:
 class EnibScene: public Scene
 {
 
+	
 protected:
 
 	virtual void _setCamera(void)
@@ -215,7 +216,17 @@ protected:
 	
 	virtual void _setupLighting(void)
 	{	
+		GLfloat white[] = {1.0, 1.0, 1.0, 1.0};
+		GLfloat red[] = {1.0, 0.0, 0.0, 1.0};
+		GLfloat off[] = {0.0, 0.0, 0.0, 0.0};
+	
 		glEnable(GL_NORMALIZE);
+		
+		glEnable(GL_LIGHTING);
+		
+		if(_activeBackground == FOND_FEU) glLightModelfv(GL_LIGHT_MODEL_AMBIENT,red);
+		else glLightModelfv(GL_LIGHT_MODEL_AMBIENT,white);
+		glDisable(GL_LIGHTING);
 	}
 	
 
@@ -258,6 +269,7 @@ int main(int argc, char** argv)
 	TexturedRectangle sky("sky","textures/sky.png", 33.0 * 4, 33.0 * 3);
 	sky.addTransformation(new Translation(0.0, 0.0, -50.0));
 	sky.addContext(new DepthTestContext());
+	
 	scene.addChild(&sky);
 
 	// Bâtiment de l'ENIB
@@ -265,6 +277,7 @@ int main(int argc, char** argv)
 	enib.addTransformation(new Translation(0.0, -6.0, 0.0));
 	enib.addContext(new AlphaTestContext(GL_GREATER, 0.95));
 	enib.addContext(new DepthTestContext());
+	enib.addContext(new LightingContext());
 	scene.addChild(&enib);
 
 
@@ -284,17 +297,18 @@ int main(int argc, char** argv)
 	Tree tree1;
 	tree1.addTransformation(new Translation(1.5, -1.85, 5.0));
 	scene.addChild(&tree1);
+	tree1.addContext(new LightingContext());
 
 	// Arbre 2
 	Tree tree2;
 	tree2.addTransformation(new Translation(6.0, -1.65, 4.5));
 	scene.addChild(&tree2);
-
+	tree2.addContext(new LightingContext());
 	// Arbre 3
 	Tree tree3;
 	tree3.addTransformation(new Translation(8.0, -1.65, 4.0));
 	scene.addChild(&tree3);
-
+	tree3.addContext(new LightingContext());
 	// Soucoupe 1
 	
 	// Initializing random position
