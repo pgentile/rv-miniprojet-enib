@@ -77,6 +77,8 @@ void Soucoupe::_animate(int timerInterval)
 	
 void Soucoupe::_render(void)
 {
+	
+	
 	// Material Parameters
 	GLfloat off[] = {0.0, 0.0, 0.0, 0.0};
 	GLfloat white[] = {1.0, 1.0, 1.0, 1.0};
@@ -85,6 +87,8 @@ void Soucoupe::_render(void)
 	GLfloat shiny[] = {100.0};
 	GLfloat dull[] = {0.0};
 	GLfloat mat_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
+	
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT,off);
 	
 	// Loading Texture
 	unsigned int texture = PngLoader::load("textures/metal.png");
