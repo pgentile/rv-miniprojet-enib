@@ -16,10 +16,13 @@ class TexturedRectangle: public Element
 
 public:
 
-	TexturedRectangle(string texturePath, Size size);
+	TexturedRectangle(string name,string texturePath, Size size);
 
-	TexturedRectangle(string texturePath, GLfloat width, GLfloat height);
+	TexturedRectangle(string name,string texturePath, GLfloat width, GLfloat height);
 
+	void setTexture(string texturePath);
+	string getName(void);
+	
 protected:
 
 	virtual void _preRender(void);
@@ -31,7 +34,7 @@ protected:
 private:
 
 	unsigned int _texture;
-
+	string _name;
 	Size _size;
 
 };

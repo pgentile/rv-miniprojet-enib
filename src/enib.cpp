@@ -28,11 +28,28 @@ using namespace std;
 /**
  * Fenêtre paramétrée
  */
+ 
+enum fondScene {
+	FOND_NORMAL,
+	FOND_FEU
+};
+
+
+
 class EnibWindow: public Window
 {
 
 public:
 
+	vector<string> _backgrounds;
+	int _activeBackground;
+	EnibWindow(void)
+	{
+		_activeBackground = 0;
+		_backgrounds.push_back("textures/sky.png");
+		_backgrounds.push_back("textures/feu.png");
+	}
+	
 	virtual void onKeyPress(unsigned char key, int x, int y)
 	{
 	switch (key) {
@@ -59,6 +76,8 @@ public:
 		break;
 		case 'e': /* Attire les soucoupes */
 			_ufoNear();
+		case 'b': /* Change le fond de la sc�ne */
+			_changeBackground();
 		break;
 		case ESC_KEY:
 			exit(0);
@@ -74,6 +93,22 @@ public:
 
 protected:
 
+	void _changeBackground()
+	{
+		_activeBackground = !_activeBackground;
+		
+		vector<Element*> elements = getScene()->getElements();
+		for (vector<Element*>::iterator i = elements.begin(); i != elements.end(); ++i) {
+			TexturedRectangle * sky;
+			if ((sky = dynamic_cast<TexturedRectangle*>(*i)) != 0) {
+				if(sky->getName() == "sky")
+				{
+					sky->setTexture(_backgrounds[_activeBackground]);
+				}
+			}
+		}
+	}
+	
 	void _ufoUp(void)
 	{
 		vector<Element*> elements = getScene()->getElements();
@@ -220,13 +255,13 @@ int main(int argc, char** argv)
 	Window::create(argc, argv, window);
 
 	// Ciel de l'ENIB
-	TexturedRectangle sky("textures/sky.png", 33.0 * 4, 33.0 * 3);
+	TexturedRectangle sky("sky","textures/sky.png", 33.0 * 4, 33.0 * 3);
 	sky.addTransformation(new Translation(0.0, 0.0, -50.0));
 	sky.addContext(new DepthTestContext());
 	scene.addChild(&sky);
 
 	// Bâtiment de l'ENIB
-	TexturedRectangle enib("textures/batimentEnib.png", 6.0 * 5, 6.0 * 3);
+	TexturedRectangle enib("batiment","textures/batimentEnib.png", 6.0 * 5, 6.0 * 3);
 	enib.addTransformation(new Translation(0.0, -6.0, 0.0));
 	enib.addContext(new AlphaTestContext(GL_GREATER, 0.95));
 	enib.addContext(new DepthTestContext());
