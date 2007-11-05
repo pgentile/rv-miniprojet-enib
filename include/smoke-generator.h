@@ -4,7 +4,7 @@
 #include "composite-element.h"
 #include "positioned-element.h"
 
-#define SMOKE_NUMBER 50
+#define SMOKE_NUMBER 100
 
 using namespace std;
 
