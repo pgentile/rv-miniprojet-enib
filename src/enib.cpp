@@ -76,6 +76,7 @@ public:
 		break;
 		case 'e': /* Attire les soucoupes */
 			_ufoNear();
+		break;
 		case 'b': /* Change le fond de la scène */
 			_changeBackground();
 		break;
@@ -278,8 +279,8 @@ int main(int argc, char** argv)
 	enib.addContext(new AlphaTestContext(GL_GREATER, 0.95));
 	enib.addContext(new DepthTestContext());
 	enib.addContext(new LightingContext());
+	
 	scene.addChild(&enib);
-
 
 	// Texte Entree Enib
 	TextEnter entreeEnib;
@@ -342,7 +343,6 @@ int main(int argc, char** argv)
 	SmokeGenerator smokeGenerator(&soucoupe1);
 	SmokeGenerator smokeGenerator2(&soucoupe2);
 	smokeGenerator2.addContext(new DepthTestContext());
-	
 	scene.addChild(&smokeGenerator);
 	scene.addChild(&smokeGenerator2);
 	
