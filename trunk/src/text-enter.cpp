@@ -5,7 +5,7 @@
 TextEnter::TextEnter(void)
 {
 	// Texte Entree Enib
-	_board = new TexturedRectangle("textures/EntreeEnib.png", 1.0 * 5, 1.0 * 3);
+	_board = new TexturedRectangle("entree","textures/EntreeEnib.png", 1.0 * 5, 1.0 * 3);
 	_board->addContext(new AlphaTestContext(GL_GREATER, 0.2));
 
 	setVisible(false);

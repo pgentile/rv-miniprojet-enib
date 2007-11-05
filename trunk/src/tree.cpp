@@ -6,7 +6,7 @@
 Tree::Tree(void)
 {
 	addContext(new DepthTestContext());
-	_board = new TexturedRectangle("textures/tree.png", 2.0, 4.0);
+	_board = new TexturedRectangle("arbre","textures/tree.png", 2.0, 4.0);
 	_board->addContext(new AlphaTestContext(GL_GREATER, 0.10));
 }
 

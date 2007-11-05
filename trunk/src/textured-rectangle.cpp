@@ -1,14 +1,16 @@
 #include "textured-rectangle.h"
 #include "png-loader.h"
 
-TexturedRectangle::TexturedRectangle(string texturePath, Size size)
+TexturedRectangle::TexturedRectangle(string name,string texturePath, Size size)
 {
+	_name = name;
 	_texture = PngLoader::load(texturePath);
 	_size = size;
 }
 
-TexturedRectangle::TexturedRectangle(string texturePath, GLfloat width, GLfloat height)
+TexturedRectangle::TexturedRectangle(string name, string texturePath, GLfloat width, GLfloat height)
 {
+	_name = name;
 	_texture = PngLoader::load(texturePath);
 	_size = Size(width, height);
 }
@@ -17,6 +19,11 @@ void TexturedRectangle::_preRender(void)
 {  
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, _texture);
+}
+
+string TexturedRectangle::getName()
+{
+	return _name;
 }
 
 void TexturedRectangle::_render(void)
@@ -35,3 +42,8 @@ void TexturedRectangle::_postRender(void)
 	glDisable(GL_TEXTURE_2D);
 }
 
+void TexturedRectangle::setTexture(string texturePath)
+{
+	_texture = PngLoader::load(texturePath);
+}
+	
